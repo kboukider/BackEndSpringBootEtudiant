@@ -26,12 +26,15 @@ public class BackEndAppApplication implements CommandLineRunner {
 		SpringApplication.run(BackEndAppApplication.class, args);
 	}
 
+	
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
 		repositoryRestConfiguration.exposeIdsFor(Formation.class, Etudiant.class);
-		
+		repositoryRestConfiguration.getCorsRegistry()
+		.addMapping("/**")
+		.allowedOrigins("*")
+		.allowedHeaders("*")
+		.allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
 		
 		Formation f1 = formationRepository.save(new Formation(null, "php", 20, null ) );
 		Formation f2 = formationRepository.save(new Formation(null, "java", 20, null));
