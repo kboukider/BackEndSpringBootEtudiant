@@ -29,6 +29,8 @@ public class BackEndAppApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		repositoryRestConfiguration.setReturnBodyOnCreate(true);
+		repositoryRestConfiguration.setReturnBodyOnUpdate(true);
 		repositoryRestConfiguration.exposeIdsFor(Formation.class, Etudiant.class);
 		repositoryRestConfiguration.getCorsRegistry()
 		.addMapping("/**")
